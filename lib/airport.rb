@@ -1,5 +1,6 @@
 class Airport
 
+	CAPACITY = 25 
 	attr_accessor :airport
 
 	def ramp 
@@ -11,22 +12,25 @@ class Airport
 	end
 
 	def land(plane)
-		raise "Can't land due to weather conditions" if weather == "stormy"
+		check_weather
+		raise "Can't land because airport is full" if full?
 		ramp << plane	
 		
 	end
 
 	def takeoff(plane)
-		raise "Can't fly due to weather conditions"	if weather == "stormy"
+		check_weather
 		ramp = @ramp.delete(plane) 		
 	end
 
-	def weather
+	def check_weather
 		weather = Kernel.rand(50)
-		if weather == 50 
-			return "stormy"
-		else "sunny"
-		end
+		raise "Can't fly due to weather conditions" if weather == 50 
 	end
+
+	def full?
+		plane_counter == CAPACITY
+	end
+
 
 end
