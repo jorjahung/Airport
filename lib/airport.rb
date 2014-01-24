@@ -24,7 +24,7 @@ class Airport
 
 	def land(plane)
 		check_weather
-		raise "Can't land because airport is full" if full?
+		raise "Airport is full" if full?
 		plane.landing
 		ramp << plane	
 	end

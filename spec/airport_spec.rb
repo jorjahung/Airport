@@ -45,7 +45,6 @@ let(:plane) { Plane.new }
 		end
 	end
 
-
 	context "Traffic control" do
 		before :each do 
 			test_values = (1..49).to_a
