@@ -4,4 +4,8 @@ class Plane
 		@plane
 	end
 
+	def flight_status
+		@flight_status = ["Flying", "Landed"]
+	end
+
 end
