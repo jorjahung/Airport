@@ -18,15 +18,15 @@ let(:cathay_pacific) { Plane.new }
 			Kernel.stub(:rand).and_return( *test_values )
 		end
 
-		it "plane should be able to land when sunny" do
-			airport.land(cathay_pacific)
-			expect(airport.plane_counter).to eq(1)
-		end
-
 		it "plane should be able to takeoff when sunny" do
 			airport.land(cathay_pacific)
 			airport.takeoff(cathay_pacific)
 			expect(airport.plane_counter).to eq(0)
+		end
+		
+		it "plane should be able to land when sunny" do
+			airport.land(cathay_pacific)
+			expect(airport.plane_counter).to eq(1)
 		end
 	end
 
