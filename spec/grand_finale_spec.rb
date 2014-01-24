@@ -5,7 +5,7 @@ require_relative "../lib/plane"
 describe "The Grand Finale" do 
 let(:airport) { Airport.new }
 let(:planes)  { Array.new(6) { Plane.new } }
-let(:tinyairport) { Airport.new(:capacity=> 5)}
+let(:tinyairport) { Airport.new(:capacity => 5)}
 
 	it "should land all planes" do
 		planes.each do |plane|
@@ -29,14 +29,21 @@ let(:tinyairport) { Airport.new(:capacity=> 5)}
 		expect(airport.plane_counter).to eq(0)
 	end
 
-	it "first plane should take off when airport is full" do
+	it "plane should takeoff when airport is full" do
 		planes.each do |plane|
+			if !tinyairport.full?
 			plane.landing
-			airport.land(plane)
+			tinyairport.land(plane)
 			expect(plane).to_not be_flying
 			expect(plane.flight_status).to eq("On ground")
+			else
+			plane.takeoff
+			tinyairport.takeoff(plane)
+			expect(plane).to be_flying
+			expect(plane.flight_status).to eq("In flight")
+			end	
 		end
-		expect(airport.plane_counter).to eq(5)
+		expect(tinyairport.plane_counter).to eq(5)
 	end
 
 
