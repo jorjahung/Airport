@@ -12,14 +12,14 @@ let(:cathay_pacific) { Plane.new }
 	end
 
 	it "plane should be able to land when sunny" do
-		test_values = [1, 2, 3]
+		test_values = (1..49).to_a
 		Kernel.stub(:rand).and_return( *test_values )
 		airport.land(cathay_pacific)
 		expect(airport.plane_counter).to eq(1)
 	end
 
 	it "plane should be able to takeoff when sunny" do
-		test_values = [1, 2, 3]
+		test_values = (1..49).to_a
 		Kernel.stub(:rand).and_return( *test_values )
 		airport.land(cathay_pacific)
 		airport.takeoff(cathay_pacific)
