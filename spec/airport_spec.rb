@@ -4,7 +4,7 @@ require_relative "../lib/plane"
 
 describe Airport do 
 let(:airport) { Airport.new }
-let(:cathay_pacific) { Plane.new }
+let(:plane) { Plane.new }
 
 	context "Creating a new airport" do
 		it "should have 0 planes when created" do
@@ -19,13 +19,13 @@ let(:cathay_pacific) { Plane.new }
 		end
 
 		it "plane should be able to takeoff when sunny" do
-			airport.land(cathay_pacific)
-			airport.takeoff(cathay_pacific)
+			airport.land(plane)
+			airport.takeoff(plane)
 			expect(airport.plane_counter).to eq(0)
 		end
 
 		it "plane should be able to land when sunny" do
-			airport.land(cathay_pacific)
+			airport.land(plane)
 			expect(airport.plane_counter).to eq(1)
 		end
 	end
@@ -37,11 +37,11 @@ let(:cathay_pacific) { Plane.new }
 		end
 
 		it "plane shouldn't be able to takeoff if stormy" do
-			expect{airport.takeoff(cathay_pacific)}.to raise_error
+			expect{airport.takeoff(plane)}.to raise_error
 		end
 
 		it "plane shouldn't be able to land if stormy" do
-			expect{airport.land(cathay_pacific)}.to raise_error
+			expect{airport.land(plane)}.to raise_error
 		end
 	end
 
@@ -58,7 +58,7 @@ let(:cathay_pacific) { Plane.new }
 		end
 
 		it "should not be able to land when airport is full" do
-			expect{airport.land(cathay_pacific)}.to raise_error
+			expect{airport.land(plane)}.to raise_error
 		end
 	end
 
