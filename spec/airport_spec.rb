@@ -5,7 +5,6 @@ require_relative "../lib/plane"
 describe Airport do 
 let(:airport) {Airport.new }
 let(:cathay_pacific) { Plane.new }
-let(:sunny) {	test_values = (1..49).to_a; Kernel.stub(:rand).and_return( *test_values )}
 
 	context "Creating a new airport" do
 		it "should have 0 planes when created" do
@@ -62,6 +61,5 @@ let(:sunny) {	test_values = (1..49).to_a; Kernel.stub(:rand).and_return( *test_v
 			expect{airport.land(cathay_pacific)}.to raise_error
 		end
 	end
-
 
 end
