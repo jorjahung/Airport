@@ -1,10 +1,21 @@
 class Airport
 
-	CAPACITY = 25 
-	attr_accessor :airport
+	DEFAULT_CAPACITY = 25 
+
+	def airport(options ={})
+		self.capacity = options.fetch(:capacity, capacity)
+	end
 
 	def ramp 
 		@ramp ||= []
+	end
+
+	def capacity
+		@capacity ||= DEFAULT_CAPACITY
+	end
+
+	def capacity=(value)
+		@capacity=value
 	end
 		
 	def plane_counter 
@@ -29,7 +40,7 @@ class Airport
 	end
 
 	def full?
-		plane_counter == CAPACITY
+		plane_counter == capacity
 	end
 
 

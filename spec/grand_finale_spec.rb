@@ -16,8 +16,10 @@ let(:planes)  { Array.new(6) { Plane.new } }
 		expect(airport.plane_counter).to eq(6)
 	end
 
-	it "should takeoff all planes" do
+	it "all planes should be able to takeoff" do
 		planes.each do |plane|
+			plane.landing
+			airport.land(plane)
 			plane.takeoff
 			airport.takeoff(plane)
 			expect(plane).to be_flying
@@ -25,10 +27,5 @@ let(:planes)  { Array.new(6) { Plane.new } }
 		end
 		expect(airport.plane_counter).to eq(0)
 	end
-
-
-
-
-
 
 end
