@@ -11,11 +11,22 @@ class Airport
 	end
 
 	def land(plane)
+		raise "Can't land due to weather conditions" if weather == "stormy"
 		ramp << plane	
+		
 	end
 
 	def takeoff(plane)
-		ramp = @ramp.delete(plane)
+		raise "Can't fly due to weather conditions"	if weather == "stormy"
+		ramp = @ramp.delete(plane) 		
+	end
+
+	def weather
+		weather = Kernel.rand(50)
+		if weather == 50 
+			return "stormy"
+		else "sunny"
+		end
 	end
 
 end

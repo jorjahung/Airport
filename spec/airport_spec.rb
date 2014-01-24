@@ -11,16 +11,28 @@ let(:cathay_pacific) { Plane.new }
 		expect(airport.plane_counter).to eq(0)
 	end
 
-	it "plane should be able to land" do
+	it "plane should be able to land when sunny" do
+		test_values = [1, 2, 3]
+		Kernel.stub(:rand).and_return( *test_values )
 		airport.land(cathay_pacific)
 		expect(airport.plane_counter).to eq(1)
 	end
 
-	it "plane should be able to takeoff" do
+	it "plane should be able to takeoff when sunny" do
+		test_values = [1, 2, 3]
+		Kernel.stub(:rand).and_return( *test_values )
 		airport.land(cathay_pacific)
 		airport.takeoff(cathay_pacific)
 		expect(airport.plane_counter).to eq(0)
 	end
+
+	it "plane shouldn't be able to land if stormy" do
+		test_values = [50]
+		Kernel.stub(:rand).and_return( *test_values )
+		expect{airport.land(cathay_pacific)}.to raise_error
+	end
+
+
 
 
 end
