@@ -14,6 +14,9 @@ let(:plane) { Plane.new }
 
 	context "Taking off and landing when sunny" do
 		before :each do 
+			# that's a smart piece of code but it's not the right way of doing it
+			# What you wanted to do is to just stub the method, e.g.
+			# airport.stub(:check_weather).and_return(true) # or something like that
 			test_values = (1..49).to_a
 			Kernel.stub(:rand).and_return( *test_values )
 		end
@@ -49,7 +52,7 @@ let(:plane) { Plane.new }
 		before :each do 
 			test_values = (1..49).to_a
 			Kernel.stub(:rand).and_return( *test_values )
-			25.times {airport.land(Plane.new)}
+			airport.capacity.times {airport.land(Plane.new)}
 		end
 
 		it "should know when airport is full" do
